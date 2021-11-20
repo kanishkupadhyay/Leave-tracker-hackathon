@@ -3,11 +3,12 @@ import { React, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function SignUp(props) {
+  const URL ='https://leave-tracker-backend.herokuapp.com/employee'
   const [radio, setRadio] = useState("hr");
   const onSubmitForm = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/employee", {
+      .post(URL, {
         ...inputField,
         role: radio,
         leave: 2,
