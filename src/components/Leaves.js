@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import tableHeaderItems from "../config/table-header";
 import axios from "axios";
 const fetchData = () => {
-  const URL = 'https://leave-tracker-backend.herokuapp.com/employee'
+  const URL = 'https://leave-tracker-backend.herokuapp.com/employee?role=employee'
   return axios.get(URL);
 };
 export default function Leaves(props) {
