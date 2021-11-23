@@ -409,3 +409,32 @@ main {
 .rwd-table th, .rwd-table td:before {
   color: #dd5;
 }
+
+.error-notice{
+  margin:5px;
+  .onerror{
+    width:60%;
+    background-color: #ffffff;
+    padding:20px;
+    border:1px solid #eee;
+    border-left-width:5px;
+    border-radius: 3px;
+    margin:10px auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+  }
+  .danger{
+    border-left-color: #d9534f;
+    background-color: rgba(217, 83, 79, 0.1);
+    strong{
+      color:#d9534f;
+    }
+  }
+  .success {
+    border-left-color: #2b542c;
+    background-color: rgba(43, 84, 44, 0.1);
+    strong {
+      color: #2b542c;
+    }
+  }
+}

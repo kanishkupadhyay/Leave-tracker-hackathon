@@ -1,23 +1,15 @@
 import * as axios from "axios";
 import { React, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp(props) {
-  const URL ='https://leave-tracker-backend.herokuapp.com/employee'
+  const URL = "https://leave-tracker-backend.herokuapp.com/employee";
   const [radio, setRadio] = useState("hr");
-  const onSubmitForm = (event) => {
-    event.preventDefault();
-    axios
-      .post(URL, {
-        ...inputField,
-        role: radio,
-        leave: 2,
-        id: Math.random(),
-      })
-      .then((res) => console.log(res.data))
-      .catch((e) => console.log(e));
-    console.log({ ...inputField, id: 1 });
-  };
+  const [showPassword, setShowPassword] = useState(false);
+  const [eyeSlash, setEyeSlash] = useState(true);
+  const [showErrorMsg, setShowErrorMsg] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
+  const navigate = useNavigate();
   const [inputField, setInputField] = useState({
     firstName: "",
     lastName: "",
@@ -27,6 +19,34 @@ export default function SignUp(props) {
     role: "",
     leave: "",
   });
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+    if (
+      inputField.firstName &&
+      inputField.lastName &&
+      inputField.phone &&
+      inputField.email
+    ) {
+      axios
+        .post(URL, { ...inputField, role: radio, leave: 2 })
+        .then((res) => console.log(res.data))
+        .catch((e) => console.log(e));
+        setShowErrorMsg(false)
+        setShowSuccess(true)
+        setTimeout(() => {
+          navigate('/employees')
+        }, 500);
+        setTimeout(() => {
+          setShowSuccess(false)
+        }, 3000);
+    
+    }else {
+      setShowErrorMsg(true)
+      setTimeout(() => {
+        setShowErrorMsg(false)
+      }, 3000);
+    }
+  };
 
   const inputsHandler = (e) => {
     const name = e.target.name;
@@ -35,7 +55,6 @@ export default function SignUp(props) {
   };
 
   const onNumberOnlyChange = (event) => {
-    console.log(event.keyCode);
     const keyCode = event.keyCode || event.which;
     const keyValue = String.fromCharCode(keyCode);
     const isValid = new RegExp("[0-9]").test(keyValue);
@@ -52,19 +71,28 @@ export default function SignUp(props) {
   };
 
   const toggleEyeIcon = () => {
-    if(showPassword){
-      setEyeSlash(true)
-      setShowPassword(false)
-    }else{
-      setShowPassword(true)
-      setEyeSlash(false)
+    if (showPassword) {
+      setEyeSlash(true);
+      setShowPassword(false);
+    } else {
+      setShowPassword(true);
+      setEyeSlash(false);
     }
-  }
-
-  const [showPassword,setShowPassword] = useState(false)
-  const [eyeSlash,setEyeSlash] = useState(true)
+  };
   return (
     <>
+      <div class="error-notice" style={{display:showErrorMsg?'block':'none'}}>
+        <div class="onerror danger">
+          <strong>Error</strong>- Please Fill up the form
+        </div>
+      </div>
+
+      <div class="error-notice" style={{display:showSuccess?'block':'none'}}>
+        <div class="onerror success">
+          <strong>Success</strong>- Sign in  successfully
+        </div>
+      </div>
+
       <div className="login">
         <form className="form" onSubmit={onSubmitForm}>
           <h2 className="mt-0 mb-0">Sign up</h2>
@@ -108,28 +136,41 @@ export default function SignUp(props) {
           <input
             className="mt-2 sign-up password-input"
             name="password"
+            maxLength="15"
+            minLength="8"
             onKeyDown={removeWhiteSpace}
             onChange={inputsHandler}
-            type={showPassword?'text':'password'}
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
           />
           <div className="eye-icon-container">
-          <svg onClick={toggleEyeIcon} style={{display:eyeSlash?'block':'none'}}
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-eye-slash"
-            viewBox="0 0 16 16"
-          >
-            <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
-            <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
-            <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
-          </svg>
-          <svg onClick={toggleEyeIcon} style={{display:eyeSlash?'none':'block'}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-</svg>
+            <svg
+              onClick={toggleEyeIcon}
+              style={{ display: eyeSlash ? "block" : "none" }}
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-eye-slash"
+              viewBox="0 0 16 16"
+            >
+              <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+              <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
+              <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+            </svg>
+            <svg
+              onClick={toggleEyeIcon}
+              style={{ display: eyeSlash ? "none" : "block" }}
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-eye"
+              viewBox="0 0 16 16"
+            >
+              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+            </svg>
           </div>
           <input
             style={{ display: "none" }}
