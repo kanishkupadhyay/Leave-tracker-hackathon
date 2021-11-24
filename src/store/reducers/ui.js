@@ -2,7 +2,7 @@ import { createSlice, } from '@reduxjs/toolkit'
 
 
 const initialState = {
-    mode: '#dc0adcc7',
+    mode: 'rgb(29, 29, 48)',
 }
 
 export const uiSlice = createSlice({
@@ -10,10 +10,10 @@ export const uiSlice = createSlice({
   initialState,
   reducers: {
    setMode(state,){
-    if (state.mode === "#dc0adcc7") {
+    if (state.mode === "rgb(29, 29, 48)") {
         state.mode ="#1f1387c7";
       } else {
-        state.mode ="#dc0adcc7";
+        state.mode ="rgb(29, 29, 48)";
       }
    }
   },

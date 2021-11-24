@@ -10,6 +10,9 @@ const tableHeaderItems = [
     },
     {
         label:'Leaves',
+    },
+    {
+        label: 'Action'
     }
 ]
 export default tableHeaderItems

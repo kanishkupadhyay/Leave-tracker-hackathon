@@ -1,0 +1,26 @@
+
+
+service: ui
+app: leave-tracker
+org: kanishkupadhyay
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+  stage: dev
+  region: ap-south-1
+
+plugins:
+  - serverless-finch
+
+custom:
+  client:
+    bucketName: ${self:app}-${self:provider.stage}
+    distributionFolder: build
+    indexDocument: index.html
+    errorDocument: index.html
+

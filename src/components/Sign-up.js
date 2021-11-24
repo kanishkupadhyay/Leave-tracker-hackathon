@@ -25,7 +25,8 @@ export default function SignUp(props) {
       inputField.firstName &&
       inputField.lastName &&
       inputField.phone &&
-      inputField.email
+      inputField.email &&
+      inputField.password
     ) {
       axios
         .post(URL, { ...inputField, role: radio, leave: 2 })
@@ -34,7 +35,7 @@ export default function SignUp(props) {
         setShowErrorMsg(false)
         setShowSuccess(true)
         setTimeout(() => {
-          navigate('/employees')
+          navigate('/login')
         }, 500);
         setTimeout(() => {
           setShowSuccess(false)
@@ -59,6 +60,10 @@ export default function SignUp(props) {
     const keyValue = String.fromCharCode(keyCode);
     const isValid = new RegExp("[0-9]").test(keyValue);
     if (!isValid) {
+      setShowErrorMsg(true)
+     setTimeout(() => {
+      setShowErrorMsg(false)
+     }, 3000);
       event.preventDefault();
       return;
     }
@@ -128,6 +133,7 @@ export default function SignUp(props) {
             className="mt-2 sign-up"
             name="phone"
             maxLength="10"
+            minLength="10"
             onKeyPress={onNumberOnlyChange}
             onChange={inputsHandler}
             type="text"

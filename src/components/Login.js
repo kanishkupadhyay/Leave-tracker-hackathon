@@ -63,7 +63,7 @@ export default function Login(props) {
         style={{ display: userFound ? "block" : "none" }}
       >
         <div class="onerror danger">
-          <strong>Error</strong>- User not found
+          <strong>Error</strong>- Invalid Credentials
         </div>
       </div>
 
