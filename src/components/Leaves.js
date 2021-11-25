@@ -24,7 +24,9 @@ export default function Leaves(props) {
     const URL = `https://leave-tracker-backend.herokuapp.com/employee/${id}`;
     axios
       .delete(URL, { method: "DELETE" })
-      .then((data) => console.log("deleted Successfully", data))
+      .then((data) => {
+        setEmployee(employees=>employees.filter(employee=>employee.id !== id))
+      })
       .catch((e) => console.log(e));
   };
   return (
