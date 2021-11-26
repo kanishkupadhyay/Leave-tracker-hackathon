@@ -626,3 +626,23 @@ main {
     display: none;
   }
 }
+.containerss {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes dribble{
+  0%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(130px);
+  }
+}
+
+.ball{
+  animation: dribble 0.3s 0s infinite alternate ease-in-out forwards;
+  position: absolute;
+  top: 50%;
+}

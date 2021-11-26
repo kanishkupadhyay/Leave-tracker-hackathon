@@ -9,6 +9,7 @@ const fetchData = () => {
 export default function Leaves(props) {
   const [employee, setEmployee] = useState([]);
   const [showLoader, setLoader] = useState(true);
+  const [deleteLoader, setDeleteLoader] = useState(false)
   if (showLoader) {
     document.body.style.overflow = "hidden";
   } else {
@@ -21,11 +22,13 @@ export default function Leaves(props) {
   }, []);
 
   const deleteEmployee = (id) => {
+    setDeleteLoader(true)
     const URL = `https://leave-tracker-backend.herokuapp.com/employee/${id}`;
     axios
       .delete(URL, { method: "DELETE" })
       .then((data) => {
         setEmployee(employees=>employees.filter(employee=>employee.id !== id))
+        setDeleteLoader(false)
       })
       .catch((e) => console.log(e));
   };
@@ -45,6 +48,9 @@ export default function Leaves(props) {
           </div>
         </div>
       </div>
+      <div  class="containerss">
+  <svg style={{display:deleteLoader?'block':'none'}} class="ball" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50c0 27.614-22.386 50-50 50S0 77.614 0 50 22.386 0 50 0s50 22.386 50 50Z" fill="url(#a)"/><path d="M50 0v100" stroke="#1D1D1B" stroke-width="4"/><path d="M0 50h100" stroke="#000" stroke-width="4"/><path fill-rule="evenodd" clip-rule="evenodd" d="M90.061 20.077A45.819 45.819 0 0 0 79 50a45.82 45.82 0 0 0 11.061 29.923 50.213 50.213 0 0 1-2.561 3.15C79.72 74.259 75 62.68 75 50c0-12.68 4.72-24.259 12.5-33.073a50.215 50.215 0 0 1 2.561 3.15ZM9.939 79.923A45.82 45.82 0 0 0 21 50 45.819 45.819 0 0 0 9.939 20.077a50.21 50.21 0 0 1 2.561-3.15C20.28 25.741 25 37.32 25 50c0 12.68-4.72 24.259-12.5 33.073a50.209 50.209 0 0 1-2.561-3.15Z" fill="#000"/><defs><linearGradient id="a" x1="16.5" y1="12" x2="85.5" y2="84" gradientUnits="userSpaceOnUse"><stop stop-color="#FC6C33"/><stop offset="1" stop-color="#D4522B"/></linearGradient></defs></svg>
+</div>
       <div className="table-wrapper-element">
         <table style={{ background: props.mode }} className="rwd-table">
           <thead>
@@ -68,21 +74,6 @@ export default function Leaves(props) {
                     <td>{val.phone}</td>
                     <td>{val.leave}</td>
                     <td className="action-button ">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-pencil-square"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                        <path
-                          fill-rule="evenodd"
-                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-                        />
-                      </svg>
-                      <span>/</span>
                       <svg
                         onClick={deleteEmployee.bind(this, val.id)}
                         xmlns="http://www.w3.org/2000/svg"
