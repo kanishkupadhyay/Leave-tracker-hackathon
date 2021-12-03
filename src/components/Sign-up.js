@@ -212,7 +212,7 @@ export default function SignUp(props) {
             className="submit mt-4"
           />
           <div className="mt-3 dont-have-account">
-            <span>Already have an account </span>
+            <span>Already have an account? </span>
             <Link to="/login">Login</Link>
           </div>
         </form>

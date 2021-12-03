@@ -1,10 +1,19 @@
 import React from "react";
 import navbarItems from "../config/navbar";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logOut } from "../store/reducers/ui";
 export default function Navbar(props) {
+  const { isLoggedIn,userName } = useSelector((store) => store.ui);
   const toggleHamburger = () => {
     document.querySelector(".show-nav").classList.toggle("header__nav");
   };
+  const dispatch = useDispatch();
+  const logout = () => {
+    localStorage.removeItem('userInfo')
+    localStorage.removeItem('role')
+    dispatch(logOut());
+  }
 
   return (
     <>
@@ -39,13 +48,28 @@ export default function Navbar(props) {
                 return (
                   <>
                     <li className="header__nav-list-item">
-                      <NavLink activeclassname={val.active?'is-active-link':''} exact="true" className="header__nav-link" to={val.path}>
+                      <NavLink activeclassname={val.active ? 'is-active-link' : ''} exact="true" className="header__nav-link" to={val.path}>
                         {val.label}
                       </NavLink>
                     </li>
                   </>
                 );
               })}
+              <li style={{display:isLoggedIn?'none':'block'}} className="header__nav-list-item">
+                      <NavLink exact="true" className="header__nav-link" to="/login">
+                       Login
+                      </NavLink>
+                    </li>
+                    <li style={{display:isLoggedIn?'block':'none'}} className="header__nav-list-item">
+                      <span style={{marginRight:'30px'}} className="header__nav-link" >
+                      Welcome {userName}
+                      </span>
+                    </li>
+                    <li style={{display:isLoggedIn?'block':'none'}} onClick={logout} className="header__nav-list-item">
+                      <NavLink  className="header__nav-link" to="/">
+                       Logout
+                      </NavLink>
+                    </li>
               <li className="header__nav-list-item toggle-link ">
                 <a className="header__nav-link" href="#">
                   <input

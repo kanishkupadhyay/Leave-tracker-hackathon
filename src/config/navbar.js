@@ -9,10 +9,5 @@ const navbarItems = [
         path:'employees',
         active:false
     },
-    {
-        label:'Login',
-        path:'login',
-        active:false
-    }
 ]
 export default navbarItems

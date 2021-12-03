@@ -22,15 +22,17 @@ export default function Leaves(props) {
   }, []);
 
   const deleteEmployee = (id) => {
-    setDeleteLoader(true)
-    const URL = `https://leave-tracker-backend.herokuapp.com/employee/${id}`;
-    axios
-      .delete(URL, { method: "DELETE" })
-      .then((data) => {
-        setEmployee(employees=>employees.filter(employee=>employee.id !== id))
-        setDeleteLoader(false)
-      })
-      .catch((e) => console.log(e));
+    if (window.confirm('You want to delete ?')){
+      setDeleteLoader(true)
+      const URL = `https://leave-tracker-backend.herokuapp.com/employee/${id}`;
+      axios
+        .delete(URL, { method: "DELETE" })
+        .then((data) => {
+          setEmployee(employees=>employees.filter(employee=>employee.id !== id))
+          setDeleteLoader(false)
+        })
+        .catch((e) => console.log(e));
+    }
   };
   return (
     <>

@@ -163,7 +163,6 @@ main {
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    animation-delay: 0.5s;
     animation-name: fadeInUp;
     animation-timing-function: ease-in-out;
     animation-duration: 1s;
@@ -173,7 +172,6 @@ main {
   .right-cotainer {
     margin-right: -21px;
     animation-name: fadeInDown;
-    animation-delay: 0.5s;
     animation-timing-function: ease-in-out;
     animation-duration: 1s;
   }

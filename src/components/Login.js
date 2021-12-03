@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {loggedIn, setUserName} from '../store/reducers/ui'
+import { useSelector, useDispatch } from "react-redux";
 export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +12,7 @@ export default function Login(props) {
   const URL = `https://leave-tracker-backend.herokuapp.com/employee?role=employee&email=kanishk.upadhyay@codinova.com`;
   const [emp, setEmployee] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const fetchData = () => {
     const result = `https://leave-tracker-backend.herokuapp.com/employee?email=${email}&password=${password}`;
@@ -26,6 +29,8 @@ export default function Login(props) {
           localStorage.setItem('userInfo',JSON.stringify(result))
           setShowErrorMsg(false);
           setShowSuccess(true);
+          dispatch(loggedIn());
+          dispatch(setUserName());
           setTimeout(() => {
             navigate('/employees')
           }, 500);
@@ -72,7 +77,7 @@ export default function Login(props) {
         style={{ display: showSuccess ? "block" : "none" }}
       >
         <div class="onerror success">
-          <strong>Success</strong>- Sign in successfully
+          <strong>Success</strong>- Logged in successfully
         </div>
       </div>
       <div className="login">
@@ -107,6 +112,6 @@ export default function Login(props) {
 }
 Login.defaultProps = {
   title: "Login",
-  buttonValue: "Sign In",
-  footerText: `Don't have an account`,
+  buttonValue: "Log In",
+  footerText: `Don't have an account?`,
 };

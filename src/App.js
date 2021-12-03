@@ -14,6 +14,7 @@ function App() {
   const toggleMode = () => {
     dispatch(setMode());
   };
+  var session_token=localStorage.getItem('userInfo')
   return (
     <Router>
       <>
@@ -24,7 +25,7 @@ function App() {
           <Route
             exact
             path="/employees"
-            element={<Leaves mode={mode} />}
+            element={session_token?<Leaves mode={mode} />:<Login mode={mode} />}
           ></Route>
           <Route exact path="/login" element={<Login mode={mode} />}></Route>
           <Route exact path="/sign-up" element={<SignUp mode={mode} />}></Route>
