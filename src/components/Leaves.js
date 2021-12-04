@@ -22,20 +22,45 @@ export default function Leaves(props) {
   }, []);
 
   const deleteEmployee = (id) => {
-    if (window.confirm('You want to delete ?')){
+    if (window.confirm('You want to delete ?')) {
       setDeleteLoader(true)
       const URL = `https://leave-tracker-backend.herokuapp.com/employee/${id}`;
       axios
         .delete(URL, { method: "DELETE" })
         .then((data) => {
-          setEmployee(employees=>employees.filter(employee=>employee.id !== id))
+          setEmployee(employees => employees.filter(employee => employee.id !== id))
           setDeleteLoader(false)
         })
         .catch((e) => console.log(e));
     }
   };
+  const [leaveNumber, setLeaveNumber] = useState(1)
+
+  const onDecrement = () => {
+    if (leaveNumber > 1) {
+      setLeaveNumber(leaveNumber - 1)
+    }
+  }
+  const onIncrement = () => {
+    setLeaveNumber(leaveNumber + 1)
+  }
+  const addLeaveToAll = () => {
+    if(window.confirm(`Add ${leaveNumber} Leaves to all employee`)){
+      // axios
+      // .put('https://leave-tracker-backend.herokuapp.com/employee/3',{leaves:{...leaves+5}})
+      // .then((res) => console.log(res.data))
+      // .catch((e) => console.log(e));
+      console.log(localStorage.getItem('userInfo'))
+    }
+  }
   return (
     <>
+      <div className="counter m-5">
+        <button className="btn btn-warning decrement-button" onClick={onDecrement}><img src="https://img.icons8.com/material-outlined/24/000000/minus.png" /></button>
+        <span className="mx-4">{leaveNumber}</span>
+        <button className="btn btn-danger increment-button" onClick={onIncrement}><img src="https://img.icons8.com/ios/50/000000/plus-math.png" /></button>
+        <button className="btn btn-success" title="Add Leave" onClick={addLeaveToAll}>Add Leave</button>
+      </div>
       <div style={{ display: showLoader ? "block" : "none" }}>
         <div className="loader-container">
           <div className="loader">
@@ -50,9 +75,9 @@ export default function Leaves(props) {
           </div>
         </div>
       </div>
-      <div  class="containerss">
-  <svg style={{display:deleteLoader?'block':'none'}} class="ball" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50c0 27.614-22.386 50-50 50S0 77.614 0 50 22.386 0 50 0s50 22.386 50 50Z" fill="url(#a)"/><path d="M50 0v100" stroke="#1D1D1B" stroke-width="4"/><path d="M0 50h100" stroke="#000" stroke-width="4"/><path fill-rule="evenodd" clip-rule="evenodd" d="M90.061 20.077A45.819 45.819 0 0 0 79 50a45.82 45.82 0 0 0 11.061 29.923 50.213 50.213 0 0 1-2.561 3.15C79.72 74.259 75 62.68 75 50c0-12.68 4.72-24.259 12.5-33.073a50.215 50.215 0 0 1 2.561 3.15ZM9.939 79.923A45.82 45.82 0 0 0 21 50 45.819 45.819 0 0 0 9.939 20.077a50.21 50.21 0 0 1 2.561-3.15C20.28 25.741 25 37.32 25 50c0 12.68-4.72 24.259-12.5 33.073a50.209 50.209 0 0 1-2.561-3.15Z" fill="#000"/><defs><linearGradient id="a" x1="16.5" y1="12" x2="85.5" y2="84" gradientUnits="userSpaceOnUse"><stop stop-color="#FC6C33"/><stop offset="1" stop-color="#D4522B"/></linearGradient></defs></svg>
-</div>
+      <div class="containerss">
+        <svg style={{ display: deleteLoader ? 'block' : 'none' }} class="ball" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50c0 27.614-22.386 50-50 50S0 77.614 0 50 22.386 0 50 0s50 22.386 50 50Z" fill="url(#a)" /><path d="M50 0v100" stroke="#1D1D1B" stroke-width="4" /><path d="M0 50h100" stroke="#000" stroke-width="4" /><path fill-rule="evenodd" clip-rule="evenodd" d="M90.061 20.077A45.819 45.819 0 0 0 79 50a45.82 45.82 0 0 0 11.061 29.923 50.213 50.213 0 0 1-2.561 3.15C79.72 74.259 75 62.68 75 50c0-12.68 4.72-24.259 12.5-33.073a50.215 50.215 0 0 1 2.561 3.15ZM9.939 79.923A45.82 45.82 0 0 0 21 50 45.819 45.819 0 0 0 9.939 20.077a50.21 50.21 0 0 1 2.561-3.15C20.28 25.741 25 37.32 25 50c0 12.68-4.72 24.259-12.5 33.073a50.209 50.209 0 0 1-2.561-3.15Z" fill="#000" /><defs><linearGradient id="a" x1="16.5" y1="12" x2="85.5" y2="84" gradientUnits="userSpaceOnUse"><stop stop-color="#FC6C33" /><stop offset="1" stop-color="#D4522B" /></linearGradient></defs></svg>
+      </div>
       <div className="table-wrapper-element">
         <table style={{ background: props.mode }} className="rwd-table">
           <thead>

@@ -4,8 +4,10 @@ import { createSlice, } from '@reduxjs/toolkit'
 const initialState = {
     mode: 'rgb(29, 29, 48)',
     isLoggedIn:localStorage.getItem('userInfo')?true:false,
-    userName:localStorage.getItem('userInfo')?JSON.parse(localStorage.getItem('userInfo'))[0].firstName:''
+    userName:localStorage.getItem('userInfo')?JSON.parse(localStorage.getItem('userInfo'))[0].firstName:'',
+    userRole:localStorage.getItem('role')
 }
+console.log(initialState.userRole)
 
 export const uiSlice = createSlice({
   name: 'ui',
@@ -26,11 +28,14 @@ export const uiSlice = createSlice({
   },
   setUserName(state){
     state.userName = JSON.parse(localStorage.getItem('userInfo'))[0].firstName
+  },
+  setRole(state){
+    state.userRole = localStorage.getItem('role')
   }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {setMode, logOut,loggedIn,setUserName } = uiSlice.actions
+export const {setMode, logOut,loggedIn,setUserName,userRole,setRole } = uiSlice.actions
 
 export default uiSlice.reducer

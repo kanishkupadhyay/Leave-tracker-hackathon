@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {loggedIn, setUserName} from '../store/reducers/ui'
+import {loggedIn, setUserName,setRole} from '../store/reducers/ui'
 import { useSelector, useDispatch } from "react-redux";
 export default function Login(props) {
   const [email, setEmail] = useState("");
@@ -31,9 +31,16 @@ export default function Login(props) {
           setShowSuccess(true);
           dispatch(loggedIn());
           dispatch(setUserName());
+          dispatch(setRole())
+          if(localStorage.getItem('role')==='hr'){
           setTimeout(() => {
             navigate('/employees')
           }, 500);
+        }else {
+          setTimeout(() => {
+            navigate('/my-info')
+          }, 500);
+        }
           setTimeout(() => {
             setShowSuccess(false);
           }, 3000);

@@ -4,10 +4,10 @@ const navbarItems = [
         path:'home',
         active:true
     },
-    {
-        label:'Employees',
-        path:'employees',
-        active:false
-    },
+    // {
+    //     label:'Employees',
+    //     path:'employees',
+    //     active:false
+    // },
 ]
 export default navbarItems

@@ -4,7 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../store/reducers/ui";
 export default function Navbar(props) {
-  const { isLoggedIn,userName } = useSelector((store) => store.ui);
+  const { isLoggedIn,userName,userRole } = useSelector((store) => store.ui);
+  console.log(userRole)
   const toggleHamburger = () => {
     document.querySelector(".show-nav").classList.toggle("header__nav");
   };
@@ -55,13 +56,23 @@ export default function Navbar(props) {
                   </>
                 );
               })}
-              <li style={{display:isLoggedIn?'none':'block'}} className="header__nav-list-item">
+                 <li style={{display:isLoggedIn && userRole==='hr'?'block':'none'}} className="header__nav-list-item">
+                      <NavLink exact="true" className="header__nav-link" to="/employees">
+                       Employees
+                      </NavLink>
+                    </li>
+                    <li style={{display:isLoggedIn && userRole==='employee'?'block':'none'}} className="header__nav-list-item">
+                      <NavLink exact="true" className="header__nav-link" to="/my-info">
+                       My Info
+                      </NavLink>
+                    </li>
+              <li style={{display:isLoggedIn?'none':'block',marginRight:'30px'}} className="header__nav-list-item">
                       <NavLink exact="true" className="header__nav-link" to="/login">
                        Login
                       </NavLink>
                     </li>
                     <li style={{display:isLoggedIn?'block':'none'}} className="header__nav-list-item">
-                      <span style={{marginRight:'30px'}} className="header__nav-link" >
+                      <span className="header__nav-link" >
                       Welcome {userName}
                       </span>
                     </li>
