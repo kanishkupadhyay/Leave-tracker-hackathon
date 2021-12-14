@@ -10,6 +10,17 @@ export default function Leaves(props) {
   const [employee, setEmployee] = useState([]);
   const [showLoader, setLoader] = useState(true);
   const [deleteLoader, setDeleteLoader] = useState(false)
+  const [currentEmployeeLeave, setCurrentEmployeeLeave] = useState(0)
+  const increaseParitcularEmployeeLeave = (id) => {
+    let data = employee.filter((elem) => elem.id === id)
+    //  console.log(data[0].quantity++)
+    employee.filter((curElm) => {
+      if (curElm.id === id) {
+        curElm.quantity++
+      }
+    })
+    setEmployee(employee)
+  }
   if (showLoader) {
     document.body.style.overflow = "hidden";
   } else {
@@ -45,13 +56,17 @@ export default function Leaves(props) {
     setLeaveNumber(leaveNumber + 1)
   }
   const addLeaveToAll = () => {
-    if(window.confirm(`Add ${leaveNumber} Leaves to all employee`)){
-      // axios
-      // .put('https://leave-tracker-backend.herokuapp.com/employee/3',{leaves:{...leaves+5}})
-      // .then((res) => console.log(res.data))
-      // .catch((e) => console.log(e));
+    if (window.confirm(`Add ${leaveNumber} Leaves to all employee`)) {
+      let result = employee.filter((emp) => emp.id)
+      axios
+        .put(`https://leave-tracker-backend.herokuapp.com/employee/${result}`, { leaves: { ...+5 } })
+        .then((res) => console.log(res.data))
+        .catch((e) => console.log(e));
       console.log(localStorage.getItem('userInfo'))
     }
+  }
+  const updateParticularEmployee = (id) => {
+    console.log(id)
   }
   return (
     <>
@@ -100,6 +115,23 @@ export default function Leaves(props) {
                     <td>{val.email}</td>
                     <td>{val.phone}</td>
                     <td>{val.leave}</td>
+                    <td>
+                      <svg viewbox="0 0 25 25" style={{ width: '25px', height: '27px' }}>
+                        <title>Minus</title>
+                        <circle cx="12.5" cy="12.5" r="12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                        <line x1="6" y1="12.5" x2="19" y2="12.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                      </svg>
+                      <span className="mx-2">{val.quantity}</span>
+                      <svg style={{ width: '25px', height: '27px' }} viewbox="0 0 25 25" onClick={increaseParitcularEmployeeLeave.bind(this, val.id)}>
+                        <title>Plus</title>
+                        <circle cx="12.5" cy="12.5" r="12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                        <line x1="6" y1="12.5" x2="19" y2="12.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                        <line y1="6" x1="12.5" y2="19" x2="12.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                      </svg>
+                      <svg style={{width:'30px',height:'27px',borderRadius:'30px',border:'1px solid',marginLeft:'5px'}} viewBox="-5 -11 50 50" class="check" onClick={updateParticularEmployee.bind(this, val.id)}>
+                        <polyline points="0.4,15.3 12.4,27.3 39.3,0.4 " stroke="#fff" fill="transparent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                      </svg>
+                    </td>
                     <td className="action-button ">
                       <svg
                         onClick={deleteEmployee.bind(this, val.id)}
@@ -134,6 +166,24 @@ export default function Leaves(props) {
                   <strong>Email: {val.email}</strong>
                   <strong>Phone: {val.phone}</strong>
                   <strong>Leaves: {val.leave}</strong>
+                  <div className="delete-icon-card" >
+                    <svg onClick={deleteEmployee.bind(this, val.id)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path></svg>
+                  </div>
+                  <div className="particular-employee-leave mt-2 mx-5">
+                    <svg viewbox="0 0 25 25">
+                      <title>Plus</title>
+                      <circle cx="12.5" cy="12.5" r="12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                      <line x1="6" y1="12.5" x2="19" y2="12.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                      <line y1="6" x1="12.5" y2="19" x2="12.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                    </svg>
+                    <h1 className="m-0">0</h1>
+                    <svg viewbox="0 0 25 25">
+                      <title>Minus</title>
+                      <circle cx="12.5" cy="12.5" r="12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                      <line x1="6" y1="12.5" x2="19" y2="12.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                    </svg>
+                  </div>
+                  <button className="btn btn-success mt-2">Add</button>
                 </div>
               </>
             );

@@ -27,9 +27,9 @@ function App() {
           <Route
             exact
             path="/employees"
-            element={session_token && role === 'hr'?<Leaves mode={mode} />:<Login mode={mode} />}
+            element={session_token && role === 'hr'?<Leaves mode={mode} />:session_token && role === 'employee'?<Personal mode={mode} />:<Login mode={mode} />}
           ></Route>
-          <Route exact path="/my-info"  element={session_token && role === 'employee'?<Personal mode={mode} />:<Login mode={mode} />}></Route>
+          <Route exact path="/my-info"  element={session_token && role === 'employee'?<Personal mode={mode} />:session_token && role === 'hr'?<Leaves mode={mode}/>:<Login mode={mode}/>}></Route>
           <Route exact path="/login" element={!session_token&&!role?<Login mode={mode} />:role==='hr'?<Leaves mode={mode}/>:<Personal mode={mode}/>}></Route>
           <Route exact path="/sign-up" element={<SignUp mode={mode} />}></Route>
           <Route exact path="*" element={<Error />}></Route>

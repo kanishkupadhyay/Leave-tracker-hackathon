@@ -13,6 +13,9 @@ const tableHeaderItems = [
     },
     {
         label: 'Action'
+    },
+    {
+        label: 'Delete'
     }
 ]
 export default tableHeaderItems
