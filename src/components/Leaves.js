@@ -69,28 +69,6 @@ export default function Leaves(props) {
     }
   };
 
-  const onDecrement = () => {
-    if (leaveNumber > 1) {
-      setLeaveNumber(leaveNumber - 1)
-    }
-  }
-  const onIncrement = () => {
-    setLeaveNumber(leaveNumber + 1)
-  }
-  const addLeaveToAll = () => {
-    if (window.confirm(`Add ${leaveNumber} Leaves to all employee`)) {
-      let result = employee.filter((emp) => emp.id)
-      axios
-        .put(`https://leave-tracker-backend.herokuapp.com/employee/${result}`, { leaves: { ...+5 } })
-        .then()
-        .catch((e) => console.log(e));
-    }
-  }
-
-  const updateParticularEmployee = (id) => {
-    console.log(id)
-  }
-
   return (
     <>
       <div style={{ display: showLoader ? "block" : "none" }}>

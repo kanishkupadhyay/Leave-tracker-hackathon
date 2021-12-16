@@ -5,6 +5,7 @@
 @import "./styles/responsive";
 @import "./styles/navbar";
 @import "./styles/_error";
+@import "./styles/table";
 
 body {
   font-family: "Jost", sans-serif;
@@ -124,8 +125,7 @@ main {
   width: 320px;
   height: 100%;
   border: 1px solid #ccc;
-  background: url(https://media4.giphy.com/media/BHNfhgU63qrks/giphy.gif) center
-    center no-repeat;
+  background: url(https://media4.giphy.com/media/BHNfhgU63qrks/giphy.gif) center center no-repeat;
   background-size: cover;
   margin: 30px auto;
   animation-name: fadeInRight;
@@ -247,71 +247,7 @@ main {
     background-color: #ffffff;
   }
 }
-// Leaves
-.table-wrapper-element {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.rwd-table tr {
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-}
-.rwd-table th {
-  display: none;
-}
-.rwd-table td {
-  display: block;
-}
-.rwd-table td:first-child {
-  padding-top: 0.5em;
-}
-.rwd-table td:last-child {
-  padding-bottom: 0.5em;
-}
-.rwd-table td:before {
-  content: attr(data-th) ": ";
-  font-weight: bold;
-  width: 9.5em;
-  display: inline-block;
-}
 
-// Error page
-
-@media (min-width: 480px) {
-  .rwd-table td:before {
-    display: none;
-  }
-}
-.rwd-table th,
-.rwd-table td {
-  text-align: left;
-}
-@media (min-width: 480px) {
-  .rwd-table th,
-  .rwd-table td {
-    display: table-cell;
-    padding: 0.25em 0.5em;
-  }
-  .rwd-table th:first-child,
-  .rwd-table td:first-child {
-    padding-left: 0;
-  }
-  .rwd-table th:last-child,
-  .rwd-table td:last-child {
-    padding-right: 0;
-  }
-}
-.rwd-table {
-  background: #34495e;
-  color: #fff;
-  border-radius: 0.4em;
-  overflow: hidden;
-  animation-name: fadeInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-}
 @keyframes fadeInLeft {
   from {
     opacity: 0;
@@ -324,25 +260,6 @@ main {
     -webkit-transform: none;
     transform: none;
   }
-}
-.rwd-table tr {
-  border-color: #46627f;
-  text-align: center !important;
-}
-.rwd-table th,
-.rwd-table td {
-  margin: 0.5em 1em;
-  text-align: center !important;
-}
-@media (min-width: 480px) {
-  .rwd-table th,
-  .rwd-table td {
-    padding: 1em !important;
-  }
-}
-.rwd-table th,
-.rwd-table td:before {
-  color: #dd5;
 }
 
 .error-notice {
@@ -454,7 +371,7 @@ main {
       animation-name: fadeIn;
       animation-timing-function: ease-in-out;
       background: linear-gradient(150deg, #39ef74, #4600f1 100%);
-      color: #Fff;
+      color: #fff;
       animation-duration: 3s;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -462,23 +379,22 @@ main {
       padding: 30px;
       height: 224px;
       &:hover {
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-          0 10px 10px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
       }
-      .delete-icon-card{
+      .delete-icon-card {
         display: flex;
         justify-content: center;
-        svg{
+        svg {
           cursor: pointer;
           height: 100%;
           width: 28px;
         }
       }
-      .particular-employee-leave{
+      .particular-employee-leave {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        svg{
+        svg {
           height: 26px;
           cursor: pointer;
           width: 28px;
@@ -510,75 +426,49 @@ main {
   align-items: center;
 }
 
-@keyframes dribble{
-  0%{
+@keyframes dribble {
+  0% {
     transform: translateY(0);
   }
-  100%{
+  100% {
     transform: translateY(130px);
   }
 }
 
-.ball{
+.ball {
   animation: dribble 0.3s 0s infinite alternate ease-in-out forwards;
   position: absolute;
   top: 50%;
 }
-.counter{
+.counter {
   display: flex;
   justify-content: center;
-  .decrement-button{
+  .decrement-button {
     height: 38px;
     padding: 0px 26px;
     color: #fff;
     border-radius: 6px;
   }
-  .increment-button{
+  .increment-button {
     height: 38px;
     padding: 0px 26px;
     color: #fff;
     margin-right: 10px;
     border-radius: 6px;
-    img{
+    img {
       height: 24px;
     }
-    .add-leave{
-
+    .add-leave {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ECEFF1;
+  background-color: #eceff1;
   width: 100%;
   height: 420px;
   margin-top: 40px;
@@ -600,7 +490,7 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #1E88E5;
+  background-color: #1e88e5;
   -webkit-clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
   clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
 }
@@ -611,7 +501,7 @@ main {
   position: absolute;
   top: 0;
   left: 20px;
-  background-color: rgba(0,0,0,0.12);
+  background-color: rgba(0, 0, 0, 0.12);
   z-index: -9;
   -webkit-clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
   clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
@@ -632,7 +522,7 @@ main {
   height: 161px;
   left: 0;
   top: 0;
-  background-color: #ECEFF1;
+  background-color: #eceff1;
   border-radius: 50%;
   margin-top: 50.5px;
   margin-left: 35px;
@@ -664,36 +554,36 @@ main {
 
 .desc-text {
   font-size: 14px;
-  margin:0;
+  margin: 0;
   text-align: initial;
   padding-left: 9px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-@media(max-width:557px){
- .container{
-   width: 360px;
- }
- .circle{
-   display: none;
- }
- .profile-img{
-   display: none;
- }
- .text-container{
-  margin: 0;
-  margin-left: 57px;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
- }
+@media (max-width: 557px) {
+  .container {
+    width: 360px;
+  }
+  .circle {
+    display: none;
+  }
+  .profile-img {
+    display: none;
+  }
+  .text-container {
+    margin: 0;
+    margin-left: 57px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
 }
-@media(max-width:464px){
-  .card-container .cards .card{
+@media (max-width: 464px) {
+  .card-container .cards .card {
     width: 340px;
   }
 }
