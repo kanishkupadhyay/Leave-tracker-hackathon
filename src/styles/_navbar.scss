@@ -94,3 +94,14 @@
       }
     }
   }
+  .toggle-mode:checked + .toggle-mode-label {
+    background: #001399;
+  }
+  
+  .toggle-mode:checked + .toggle-mode-label:after {
+    left: auto;
+    right: 2px;
+  }
+  .active {
+    color: orange !important;
+  }

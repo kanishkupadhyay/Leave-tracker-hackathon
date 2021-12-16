@@ -1,0 +1,117 @@
+.user-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #eceff1;
+  width: 481px;
+  height: 273px;
+  margin-top: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  .menu-icon {
+    position: absolute;
+    right: 0;
+    width: 53px;
+    height: 53px;
+    filter: invert(40%) sepia(57%) saturate(2228%) hue-rotate(189deg) brightness(96%) contrast(87%);
+  }
+
+  .svg-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #1e88e5;
+    -webkit-clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
+    clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
+  }
+
+  .svg-background2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.12);
+    z-index: -9;
+    -webkit-clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
+    clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
+  }
+
+  .profile-img {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    margin-top: 55px;
+    margin-left: 40px;
+    border-radius: 50%;
+  }
+  .circle {
+    position: absolute;
+    width: 177px;
+    height: 161px;
+    left: 0;
+    top: 0;
+    background-color: #eceff1;
+    border-radius: 50%;
+    margin-top: 50.5px;
+    margin-left: 35px;
+  }
+  .text-container {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    margin-right: 40px;
+    margin-top: 45px;
+    max-width: 230px;
+    text-align: center;
+    .title-text {
+      color: #263238;
+      font-size: 28px;
+      font-weight: 600;
+      margin-top: 5px;
+    }
+
+    .info-text {
+      margin: 0;
+      padding-left: 9px;
+      text-align: initial;
+      font-size: 18px;
+    }
+
+    .desc-text {
+      font-size: 14px;
+      margin: 0;
+      text-align: initial;
+      padding-left: 9px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+@media (max-width: 557px) {
+  .user-info {
+    width: 360px;
+  }
+  .circle {
+    display: none;
+  }
+  .profile-img {
+    display: none;
+  }
+  .text-container {
+    margin: 0;
+    margin-left: 57px;
+    width: 100%;
+    margin-top: 0px !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+}

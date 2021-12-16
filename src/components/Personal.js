@@ -7,7 +7,7 @@ export default function Personal(props) {
 
    return (
       <>
-         <div className="container">
+         <div className="user-info">
             <div className="svg-background"></div>
             <div className="svg-background2"></div>
             <div className="circle"></div>
