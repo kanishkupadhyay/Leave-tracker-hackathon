@@ -23,5 +23,5 @@ export default function Home(props) {
 Home.defaultProps = {
   heading: "Welcome to Leave Tracker App",
   description: `Hello, This is a Leave Tracker App. The app is created with React JS and for store I have used Redux dev toolkit  and it includes unit testing.Created By Kanishk Upadhyay`,
-    imgSrc:'https://image.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg'
+  imgSrc: 'https://image.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg'
 };

@@ -19,6 +19,7 @@ export default function SignUp(props) {
     role: "",
     leave: "",
   });
+
   const onSubmitForm = (event) => {
     event.preventDefault();
     if (
@@ -29,19 +30,19 @@ export default function SignUp(props) {
       inputField.password
     ) {
       axios
-        .post(URL, { ...inputField, role: radio, leave: 2 })
-        .then((res) => console.log(res.data))
+        .post(URL, { ...inputField, role: radio, leave: 2, quantity: 1 })
+        .then()
         .catch((e) => console.log(e));
-        setShowErrorMsg(false)
-        setShowSuccess(true)
-        setTimeout(() => {
-          navigate('/login')
-        }, 500);
-        setTimeout(() => {
-          setShowSuccess(false)
-        }, 3000);
-    
-    }else {
+      setShowErrorMsg(false)
+      setShowSuccess(true)
+      setTimeout(() => {
+        navigate('/login')
+      }, 500);
+      setTimeout(() => {
+        setShowSuccess(false)
+      }, 3000);
+
+    } else {
       setShowErrorMsg(true)
       setTimeout(() => {
         setShowErrorMsg(false)
@@ -61,9 +62,9 @@ export default function SignUp(props) {
     const isValid = new RegExp("[0-9]").test(keyValue);
     if (!isValid) {
       setShowErrorMsg(true)
-     setTimeout(() => {
-      setShowErrorMsg(false)
-     }, 3000);
+      setTimeout(() => {
+        setShowErrorMsg(false)
+      }, 3000);
       event.preventDefault();
       return;
     }
@@ -86,13 +87,13 @@ export default function SignUp(props) {
   };
   return (
     <>
-      <div class="error-notice" style={{display:showErrorMsg?'block':'none'}}>
+      <div class="error-notice" style={{ display: showErrorMsg ? 'block' : 'none' }}>
         <div class="onerror danger">
           <strong>Error</strong>- Please Fill up the form
         </div>
       </div>
 
-      <div class="error-notice" style={{display:showSuccess?'block':'none'}}>
+      <div class="error-notice" style={{ display: showSuccess ? 'block' : 'none' }}>
         <div class="onerror success">
           <strong>Success</strong>- Sign in  successfully
         </div>

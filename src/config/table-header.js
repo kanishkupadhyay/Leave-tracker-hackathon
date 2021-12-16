@@ -1,18 +1,15 @@
 const tableHeaderItems = [
     {
-        label:'Name',
+        label: 'Name',
     },
     {
-        label:'Email',
+        label: 'Email',
     },
     {
-        label:'Phone',
+        label: 'Phone',
     },
     {
-        label:'Leaves',
-    },
-    {
-        label: 'Action'
+        label: 'Leaves'
     },
     {
         label: 'Delete'

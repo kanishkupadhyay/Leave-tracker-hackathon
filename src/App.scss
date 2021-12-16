@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap");
 @import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+
+@import "./styles/home";
+@import "./styles/responsive";
+@import "./styles/navbar";
+
 body {
   font-family: "Jost", sans-serif;
 }
@@ -18,102 +23,6 @@ body {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #6d6d6d;
-}
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.header__container {
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
-  .toggle-mode {
-    display: block;
-    opacity: 0;
-    height: 4px;
-  }
-
-  .toggle-mode-label {
-    position: relative;
-    width: 47px;
-    height: 21px;
-    display: inline-block;
-    background: #2c2cf1;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    &::after {
-      content: "";
-      position: absolute;
-      left: 2px;
-      top: 2px;
-      width: 17px;
-      height: 17px;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: 1px 3px 6px #666666;
-    }
-  }
-  .header__nav {
-    display: none;
-  }
-  .header__wrapper-mobile {
-    display: flex;
-    justify-content: space-between;
-  }
-  .header__logo-wrapper {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-  }
-  .header__hamburger-wrapper {
-    display: flex;
-    .hamburger-btn {
-      padding: 0;
-      background: none;
-      border: none;
-      cursor: pointer;
-      &:hover{
-        .hamburger-inner{
-          background: palevioletred;
-        }
-      }
-    }
-    .hamburger-inner {
-      width: 30px;
-      height: 2px;
-      background-color: #fff;
-      margin: 6px 0;
-    }
-  }
-  .header__logo-link {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-  }
-  .header__nav-list {
-    margin-top: 1rem;
-    line-height: 3;
-    padding-left: 0;
-    .toggle-link {
-      margin-top: -3px;
-    }
-    .header__nav-list-item {
-      list-style-type: none;
-      a {
-        &:hover {
-          color: orange;
-        }
-      }
-      .header__nav-link {
-        text-decoration: none;
-        color: #fff;
-      }
-    }
-  }
 }
 .toggle-mode:checked + .toggle-mode-label {
   background: #001399;
@@ -159,28 +68,7 @@ main {
     padding: 1rem;
   }
 }
-.landing-container {
-  display: flex;
-  justify-content: center;
-  padding: 0px 55px;
-  .left-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-    animation-name: fadeInUp;
-    animation-timing-function: ease-in-out;
-    animation-duration: 1s;
-    text-align: center;
-    margin-top: 140px;
-  }
-  .right-cotainer {
-    margin-right: -21px;
-    animation-name: fadeInDown;
-    animation-timing-function: ease-in-out;
-    animation-duration: 1s;
-  }
-}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -360,7 +248,7 @@ main {
 }
 // Leaves
 .table-wrapper-element {
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -606,7 +494,7 @@ main {
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       margin: 10px 0px;
       padding: 30px;
-      height: 255px;
+      height: 224px;
       &:hover {
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
           0 10px 10px rgba(0, 0, 0, 0.22);
@@ -725,8 +613,9 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #ECEFF1;
-  width: 500px;
-  height: 250px;
+  width: 100%;
+  height: 420px;
+  margin-top: 40px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -773,7 +662,7 @@ main {
 
 .circle {
   position: absolute;
-  width: 162px;
+  width: 177px;
   height: 161px;
   left: 0;
   top: 0;
@@ -786,6 +675,7 @@ main {
 .text-container {
   position: absolute;
   right: 0;
+  width: 100%;
   margin-right: 40px;
   margin-top: 45px;
   max-width: 230px;
@@ -814,6 +704,27 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+@media(max-width:557px){
+ .container{
+   width: 360px;
+ }
+ .circle{
+   display: none;
+ }
+ .profile-img{
+   display: none;
+ }
+ .text-container{
+  margin: 0;
+  margin-left: 57px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+ }
 }
 @media(max-width:464px){
   .card-container .cards .card{
