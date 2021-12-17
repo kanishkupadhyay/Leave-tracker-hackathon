@@ -85,7 +85,7 @@ export default function Leaves(props) {
           </div>
         </div>
       </div>
-      <div className="containerss">
+      <div className="leaves-container">
         <svg style={{ display: deleteLoader ? 'block' : 'none' }} className="ball" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50c0 27.614-22.386 50-50 50S0 77.614 0 50 22.386 0 50 0s50 22.386 50 50Z" fill="url(#a)" /><path d="M50 0v100" stroke="#1D1D1B" strokeWidth="4" /><path d="M0 50h100" stroke="#000" strokeWidth="4" /><path fillRule="evenodd" clipRule="evenodd" d="M90.061 20.077A45.819 45.819 0 0 0 79 50a45.82 45.82 0 0 0 11.061 29.923 50.213 50.213 0 0 1-2.561 3.15C79.72 74.259 75 62.68 75 50c0-12.68 4.72-24.259 12.5-33.073a50.215 50.215 0 0 1 2.561 3.15ZM9.939 79.923A45.82 45.82 0 0 0 21 50 45.819 45.819 0 0 0 9.939 20.077a50.21 50.21 0 0 1 2.561-3.15C20.28 25.741 25 37.32 25 50c0 12.68-4.72 24.259-12.5 33.073a50.209 50.209 0 0 1-2.561-3.15Z" fill="#000" /><defs><linearGradient id="a" x1="16.5" y1="12" x2="85.5" y2="84" gradientUnits="userSpaceOnUse"><stop stopColor="#FC6C33" /><stop offset="1" stopColor="#D4522B" /></linearGradient></defs></svg>
       </div>
       <div className="table-wrapper-element">
